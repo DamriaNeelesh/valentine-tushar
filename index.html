@@ -74,6 +74,8 @@
         align-items: center;
         justify-content: center;
         padding: 32px 20px;
+        padding: calc(32px + env(safe-area-inset-top)) 20px
+          calc(32px + env(safe-area-inset-bottom)) 20px;
       }
 
       .bg-glow {
@@ -579,7 +581,7 @@
       .envelopeStage {
         position: relative;
         margin: 18px auto 8px;
-        width: min(410px, 92vw);
+        width: min(410px, 100%);
         display: grid;
         place-items: center;
         gap: 10px;
@@ -1498,21 +1500,6 @@
         animation: none;
       }
 
-      /* Make Day 2 content scroll safely on small screens/heights */
-      body[data-day="2"] .card {
-        max-height: calc(100vh - 64px);
-        max-height: calc(100svh - 64px);
-        overflow: auto;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox */
-      }
-
-      body[data-day="2"] .card::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-      }
-
       .flow {
         position: relative;
         margin: 12px 0 16px;
@@ -1737,8 +1724,39 @@
       }
 
       @media (max-width: 440px) {
+        body {
+          align-items: flex-start;
+          padding: 18px 14px;
+          padding: calc(18px + env(safe-area-inset-top)) 14px
+            calc(18px + env(safe-area-inset-bottom)) 14px;
+        }
+
         .card {
-          padding: 48px 22px 34px;
+          padding: 44px 18px 28px;
+        }
+
+        .ribbon {
+          top: 14px;
+          max-width: calc(100% - 28px);
+          white-space: normal;
+          text-align: center;
+          line-height: 1.25;
+          font-size: 11px;
+          letter-spacing: 0.06em;
+        }
+
+        .roseMark {
+          margin-bottom: 12px;
+        }
+
+        .sub {
+          margin: 12px auto 14px;
+          font-size: 14px;
+        }
+
+        .envelopeStage {
+          margin-top: 14px;
+          width: 100%;
         }
 
         .script {
@@ -1746,11 +1764,11 @@
         }
 
         .sheet {
-          padding: 22px 20px 18px;
+          padding: 20px 18px 16px;
         }
 
         .sheet .photoFrame {
-          width: min(200px, 68vw);
+          max-width: min(200px, 68vw);
         }
 
         .sheet .letterLine {
@@ -1761,12 +1779,24 @@
           font-size: 17px;
         }
 
-        .ribbon {
-          top: 14px;
-        }
-
         .buttons {
           gap: 12px;
+        }
+
+        body[data-day="2"] .roseChoiceBtn {
+          width: 70px;
+          height: 70px;
+          font-size: 30px;
+        }
+
+        body[data-day="2"] #card.day2Final {
+          padding-top: 26px;
+          padding-bottom: 22px;
+        }
+
+        body[data-day="2"] #card.day2Final .photoFrame {
+          width: min(210px, 74vw);
+          margin-bottom: 10px;
         }
 
         .toast {
@@ -1777,6 +1807,52 @@
         .note code {
           white-space: normal;
           word-break: break-word;
+        }
+      }
+
+      @media (max-height: 720px) {
+        body {
+          align-items: flex-start;
+          padding: 18px 14px;
+          padding: calc(18px + env(safe-area-inset-top)) 14px
+            calc(18px + env(safe-area-inset-bottom)) 14px;
+        }
+
+        .modal {
+          padding: 18px 14px;
+        }
+
+        .sheet {
+          padding: 18px 16px 14px;
+        }
+
+        .sheet .photoFrame {
+          height: clamp(110px, 18vh, 230px);
+        }
+
+        .sheet .letterHeader {
+          margin-bottom: 10px;
+        }
+
+        .sheet .letterLine {
+          margin-bottom: 6px;
+          font-size: clamp(11px, 2.8vw, 14px);
+          line-height: 1.42;
+        }
+
+        .choiceButtons .btn {
+          padding: 12px 14px;
+          font-size: 13px;
+        }
+
+        .sheet .modalFooter {
+          margin-top: 8px;
+        }
+      }
+
+      @media (max-height: 600px) {
+        .sheet .modalFooter {
+          display: none;
         }
       }
 
@@ -2508,7 +2584,7 @@
                     Main tumse koi perfect future ka vaada nahi karta,<br />
                     bas har imperfect din tumhare saath jeena chahta hoon.
                   </p>
-                  <div class="ask">Marry me.</div>
+                  <div class="ask">Will you be my partner</div>
                   <div class="buttons">
                     <button class="btn secondary" type="button" data-action="yes">Haan</button>
                     <button class="btn primary" type="button" data-action="yes">Hamesha</button>
