@@ -594,6 +594,7 @@
         margin: 0;
         border-radius: 26px;
         background: transparent;
+        overflow: hidden;
         cursor: pointer;
         outline: none;
         -webkit-tap-highlight-color: transparent;
@@ -674,7 +675,9 @@
         border: 1px solid rgba(42, 12, 26, 0.06);
         box-shadow: 0 20px 60px rgba(35, 18, 23, 0.12);
         transform: translateY(54%);
-        transition: transform 780ms cubic-bezier(0.2, 0.9, 0.2, 1);
+        opacity: 0;
+        transition: transform 780ms cubic-bezier(0.2, 0.9, 0.2, 1),
+          opacity 220ms ease;
         z-index: 1;
       }
 
@@ -765,6 +768,8 @@
           linear-gradient(135deg, rgba(139, 27, 78, 0.78), rgba(255, 77, 157, 0.58));
         box-shadow: 0 18px 55px rgba(139, 27, 78, 0.16);
         opacity: 0.92;
+        display: grid;
+        place-items: center;
         transition: transform 780ms cubic-bezier(0.2, 0.9, 0.2, 1),
           opacity 220ms ease;
         z-index: 5;
@@ -779,6 +784,19 @@
         opacity: 0.55;
       }
 
+      .sealText {
+        position: relative;
+        font-family: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: rgba(255, 255, 255, 0.96);
+        text-shadow: 0 16px 34px rgba(35, 18, 23, 0.22);
+        user-select: none;
+        pointer-events: none;
+      }
+
       .envelope.open .envFlap {
         transform: rotateX(-180deg);
       }
@@ -790,31 +808,7 @@
 
       .envelope.open .envPaper {
         transform: translateY(-16%);
-      }
-
-      .letterCard {
-        width: 100%;
-        max-height: 0;
-        opacity: 0;
-        transform: translateY(-8px);
-        padding: 0 18px;
-        overflow: hidden;
-        border-radius: 24px;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(42, 12, 26, 0.08);
-        box-shadow: 0 20px 60px rgba(35, 18, 23, 0.12);
-        backdrop-filter: blur(8px);
-        transition: max-height 650ms cubic-bezier(0.2, 0.9, 0.2, 1),
-          opacity 220ms ease,
-          transform 220ms ease,
-          padding 220ms ease;
-      }
-
-      .letterCard.open {
-        max-height: 520px;
         opacity: 1;
-        transform: none;
-        padding: 18px 18px 16px;
       }
 
       .letterHeader {
@@ -867,28 +861,28 @@
         text-align: center;
       }
 
-      .choiceArea {
-        width: 100%;
-        max-height: 0;
-        opacity: 0;
-        transform: translateY(-6px);
-        overflow: hidden;
-        padding: 0;
-        margin: 0;
-        pointer-events: none;
-        transition: max-height 650ms cubic-bezier(0.2, 0.9, 0.2, 1),
-          opacity 220ms ease,
-          transform 220ms ease,
-          padding 220ms ease,
-          margin 220ms ease;
+      .modalChoices {
+        margin-top: 10px;
       }
 
-      .choiceArea.open {
-        max-height: 220px;
-        opacity: 1;
-        transform: none;
-        padding: 2px 0 0;
-        pointer-events: auto;
+      .modalFooter {
+        position: relative;
+        margin: 14px auto 0;
+        max-width: 58ch;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.55;
+        color: rgba(35, 18, 23, 0.62);
+      }
+
+      .modalMsg {
+        position: relative;
+        margin: 10px auto 0;
+        max-width: 58ch;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.5;
+        color: rgba(35, 18, 23, 0.72);
       }
 
       .choiceButtons {
@@ -1253,6 +1247,11 @@
         box-shadow: 0 26px 90px rgba(42, 12, 26, 0.18);
       }
 
+      .sheet .photoFrame {
+        width: min(220px, 72vw);
+        margin-bottom: 12px;
+      }
+
       .photoFrame::before {
         content: "";
         position: absolute;
@@ -1348,6 +1347,31 @@
         color: rgba(42, 12, 26, 0.74);
         line-height: 1.65;
         text-align: center;
+      }
+
+      .sheet .letterLine {
+        margin: 0 auto 10px;
+        max-width: 50ch;
+        color: rgba(35, 18, 23, 0.76);
+      }
+
+      .sheet .letterQuestion {
+        margin: 10px auto 0;
+        color: rgba(35, 18, 23, 0.92);
+      }
+
+      .sheet .modalFooter {
+        margin-top: 14px;
+        color: rgba(35, 18, 23, 0.62);
+      }
+
+      .sheet .modalMsg {
+        margin-top: 10px;
+        color: rgba(35, 18, 23, 0.72);
+      }
+
+      .sheet .modalChoices {
+        margin-top: 14px;
       }
 
       .sheet .actions {
@@ -1709,6 +1733,22 @@
           white-space: normal;
         }
 
+        .sheet {
+          padding: 22px 20px 18px;
+        }
+
+        .sheet .photoFrame {
+          width: min(200px, 68vw);
+        }
+
+        .sheet .letterLine {
+          font-size: 14px;
+        }
+
+        .sheet .letterQuestion {
+          font-size: 17px;
+        }
+
         .ribbon {
           top: 14px;
         }
@@ -1752,9 +1792,7 @@
         }
 
         .envFlap,
-        .envPaper,
-        .letterCard,
-        .choiceArea {
+        .envPaper {
           transition: none !important;
         }
       }
@@ -1788,40 +1826,16 @@
             class="envelope"
             id="envelopeBtn"
             type="button"
-            aria-expanded="false"
-            aria-controls="letterCard"
-            aria-label="Open the envelope"
+            aria-label="Tap me"
           >
             <div class="envBack" aria-hidden="true"></div>
             <div class="envPaper" aria-hidden="true"></div>
             <div class="envFront" aria-hidden="true"></div>
             <div class="envFlap" aria-hidden="true"></div>
-            <div class="envSeal" aria-hidden="true"></div>
+            <div class="envSeal" aria-hidden="true">
+              <span class="sealText">Tap me</span>
+            </div>
           </button>
-
-          <div class="letterCard" id="letterCard" aria-hidden="true">
-            <div class="letterHeader">
-              <div class="letterTag"><i aria-hidden="true"></i> A little note</div>
-            </div>
-            <p class="letterLine">Me koi badi speech dene nahi aya hu</p>
-            <p class="letterLine">Ham abhi abhi mile he par tum mere liye sukoon ko</p>
-            <p class="letterLine">
-              Me tumse koi bade wade nahi krunga bas itna sa bolunga ki tumhara har sad moment happy
-              moment hoga. Tum bas hsti rhogi
-            </p>
-            <p class="letterQuestion">Will you be my partner for life</p>
-          </div>
-
-          <div class="choiceArea" id="choiceArea" aria-hidden="true">
-            <div class="buttons choiceButtons">
-              <button id="choiceA" class="btn primary" type="button">
-                Yes, let's make this week amazing!
-              </button>
-              <button id="choiceB" class="btn secondary" type="button">
-                Only if there's chocolate involved.
-              </button>
-            </div>
-          </div>
         </div>
 
         <p class="footerText">
@@ -1857,6 +1871,9 @@
             <button id="replayBtn" class="btn secondary mini" type="button">
               Petal shower
             </button>
+            <button id="closeBtn" class="btn ghost mini" type="button">
+              Close
+            </button>
           </div>
         </div>
 
@@ -1870,12 +1887,31 @@
           <img src="tushargf2.jpeg" alt="A special memory" class="photo" />
         </div>
 
-        <div class="finalQuote">
-          Just a small effort to remind you<br />
-          <span class="accentLine">how special you are.</span>
+        <div class="letterHeader" aria-hidden="true">
+          <div class="letterTag"><i aria-hidden="true"></i> A little note</div>
+        </div>
+        <p class="letterLine">Me koi badi speech dene nahi aya hu</p>
+        <p class="letterLine">Ham abhi abhi mile he par tum mere liye sukoon ko</p>
+        <p class="letterLine">
+          Me tumse koi bade wade nahi krunga bas itna sa bolunga ki tumhara har sad moment happy
+          moment hoga. Tum bas hsti rhogi
+        </p>
+        <p class="letterQuestion">Will you be my partner for life</p>
+
+        <div class="buttons choiceButtons modalChoices">
+          <button id="choiceA" class="btn primary" type="button">
+            Yes, let's make this week amazing!
+          </button>
+          <button id="choiceB" class="btn secondary" type="button">
+            Only if there's chocolate involved.
+          </button>
         </div>
 
-        <p id="modalMsg"></p>
+        <p class="modalFooter">
+          Just a small effort to remind you how special you are. Stay happy!
+        </p>
+
+        <p id="modalMsg" class="modalMsg"></p>
       </div>
     </div>
 
@@ -1896,11 +1932,10 @@
         const modal = document.getElementById("modal");
         const modalMsg = document.getElementById("modalMsg");
         const replayBtn = document.getElementById("replayBtn");
+        const closeBtn = document.getElementById("closeBtn");
         const bgMusic = document.getElementById("bgMusic");
 
         const envelopeBtn = document.getElementById("envelopeBtn");
-        const letterCard = document.getElementById("letterCard");
-        const choiceArea = document.getElementById("choiceArea");
         const choiceA = document.getElementById("choiceA");
         const choiceB = document.getElementById("choiceB");
 
@@ -2179,7 +2214,7 @@
           if (!modal) return;
           modal.classList.add("open");
           modal.setAttribute("aria-hidden", "false");
-          const focusTarget = replayBtn;
+          const focusTarget = choiceA || replayBtn;
           if (focusTarget) focusTarget.focus({ preventScroll: true });
         }
 
@@ -2187,8 +2222,10 @@
           if (!modal) return;
           modal.classList.remove("open");
           modal.setAttribute("aria-hidden", "true");
-          const focusTarget = choiceA || envelopeBtn;
-          if (focusTarget) focusTarget.focus({ preventScroll: true });
+          if (envelopeBtn) {
+            envelopeBtn.classList.remove("open");
+            envelopeBtn.focus({ preventScroll: true });
+          }
         }
 
         function initDay2() {
@@ -2579,35 +2616,19 @@
           modalMsg.textContent = message || "";
         }
 
-        let revealTimer = 0;
-        function toggleEnvelopeReveal(show) {
-          if (letterCard) {
-            letterCard.classList.toggle("open", show);
-            letterCard.setAttribute("aria-hidden", show ? "false" : "true");
-          }
-
-          if (choiceArea) {
-            choiceArea.classList.toggle("open", show);
-            choiceArea.setAttribute("aria-hidden", show ? "false" : "true");
-          }
-        }
-
-        function setEnvelopeOpen(open) {
+        function openFromEnvelope() {
           if (!envelopeBtn) return;
-          const next = Boolean(open);
+          setModalMessage("");
 
-          window.clearTimeout(revealTimer);
-          if (!next) toggleEnvelopeReveal(false);
+          // Tiny animation before opening the "next screen".
+          envelopeBtn.classList.add("open");
 
-          envelopeBtn.classList.toggle("open", next);
-          envelopeBtn.setAttribute("aria-expanded", next ? "true" : "false");
-
-          if (next) {
-            revealTimer = window.setTimeout(
-              () => toggleEnvelopeReveal(true),
-              prefersReducedMotion() ? 0 : 170
-            );
+          if (prefersReducedMotion()) {
+            openModal();
+            return;
           }
+
+          window.setTimeout(openModal, 220);
         }
 
         function roseStorm() {
@@ -2627,15 +2648,10 @@
           burstRosesAt(r.left + r.width / 2, r.top + r.height / 2, 10);
         }
 
-        setEnvelopeOpen(false);
         setModalMessage("");
 
         if (envelopeBtn) {
-          envelopeBtn.addEventListener("click", () => {
-            const open = !envelopeBtn.classList.contains("open");
-            setEnvelopeOpen(open);
-            if (open) showToast("Pick one below.", 1400);
-          });
+          envelopeBtn.addEventListener("click", openFromEnvelope);
         }
 
         const CHOCOLATE = String.fromCodePoint(0x1f36b);
@@ -2647,7 +2663,6 @@
             petalShower();
             showToast("Yay!", 1400);
             setModalMessage("Yay! Virtual roses for you.");
-            openModal();
           });
         }
 
@@ -2658,11 +2673,11 @@
             const msg = `Deal! Chocolate is on the way! ${CHOCOLATE}`;
             showToast(msg, 2400);
             setModalMessage(msg);
-            openModal();
           });
         }
 
         if (replayBtn) replayBtn.addEventListener("click", petalShower);
+        if (closeBtn) closeBtn.addEventListener("click", closeModal);
 
         if (modal) modal.addEventListener("click", (e) => {
           if (e.target === modal) closeModal();
