@@ -79,17 +79,17 @@
         inset: -40vh -40vw;
         background: radial-gradient(
             circle at 15% 30%,
-            rgba(180, 0, 58, 0.22),
+            rgba(255, 77, 157, 0.22),
             transparent 35%
           ),
           radial-gradient(
             circle at 75% 20%,
-            rgba(255, 179, 71, 0.18),
+            rgba(177, 151, 255, 0.22),
             transparent 40%
           ),
           radial-gradient(
             circle at 60% 80%,
-            rgba(83, 184, 106, 0.16),
+            rgba(83, 184, 106, 0.12),
             transparent 40%
           );
         filter: blur(30px);
@@ -1414,7 +1414,7 @@
       }
 
       .accentLine {
-        color: rgba(180, 0, 58, 0.92);
+        color: rgba(139, 27, 78, 0.92);
       }
 
       body[data-day="2"] .accentLine {
@@ -1620,69 +1620,69 @@
     <div class="roses" id="roses" aria-hidden="true"></div>
 
     <main class="stage">
-            <section class="card" id="card" aria-label="Rose Day card">
-              <div class="ribbon"><i aria-hidden="true"></i> Day 1 - Rose Day</div>
+      <section class="card" id="card" aria-label="Rose Day card">
+        <div class="ribbon"><i aria-hidden="true"></i> Day 1 - Rose Day</div>
 
-              <div class="roseMark" aria-hidden="true">
-                <div class="ring"></div>
-                <div class="roseEmoji" aria-hidden="true">&#127801;</div>
+        <div class="roseMark" aria-hidden="true">
+          <div class="ring"></div>
+          <div class="roseEmoji" aria-hidden="true">&#127801;</div>
+        </div>
+
+        <div class="forLine">
+          For <span class="script" id="toName">My Favourite Person</span>
+        </div>
+
+        <h1 class="heroTitle">Because you deserve to smile a little brighter today...</h1>
+        <p class="sub heroSub">Happy Rose Day!</p>
+
+        <div class="envelopeStage">
+          <button
+            class="envelope"
+            id="envelopeBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="letter"
+            aria-label="Open the envelope"
+          >
+            <div class="envBack" aria-hidden="true"></div>
+            <div class="letter" id="letter" aria-hidden="true">
+              <div class="letterInner">
+                <p class="letterLine">Me koi badi speech dene nahi aya hu</p>
+                <p class="letterLine">Ham abhi abhi mile he par tum mere liye sukoon ko</p>
+                <p class="letterLine">
+                  Me tumse koi bade wade nahi krunga bas itna sa bolunga ki tumhara har sad moment
+                  happy moment hoga. Tum bas hsti rhogi
+                </p>
+                <p class="letterLine letterQuestion">Will you be my partner for life</p>
               </div>
+            </div>
+            <div class="envFront" aria-hidden="true"></div>
+            <div class="envFlap" aria-hidden="true"></div>
+            <div class="envSeal" aria-hidden="true"></div>
+          </button>
 
-              <div class="forLine">
-                For <span class="script" id="toName">My Favourite Person</span>
-              </div>
+          <div class="choiceArea" id="choiceArea" aria-hidden="true">
+            <div class="buttons choiceButtons">
+              <button id="choiceA" class="btn primary" type="button">
+                Yes, let's make this week amazing!
+              </button>
+              <button id="choiceB" class="btn secondary" type="button">
+                Only if there's chocolate involved.
+              </button>
+            </div>
+          </div>
+        </div>
 
-              <h1 class="heroTitle">Because you deserve to smile a little brighter today...</h1>
-              <p class="sub heroSub">Happy Rose Day!</p>
+        <p class="footerText">
+          Just a small effort to remind you how special you are. Stay happy!
+        </p>
 
-              <div class="envelopeStage">
-                <button
-                  class="envelope"
-                  id="envelopeBtn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="letter"
-                  aria-label="Open the envelope"
-                >
-                  <div class="envBack" aria-hidden="true"></div>
-                  <div class="letter" id="letter" aria-hidden="true">
-                    <div class="letterInner">
-                      <p class="letterLine">Me koi badi speech dene nahi aya hu</p>
-                      <p class="letterLine">Ham abhi abhi mile he par tum mere liye sukoon ko</p>
-                      <p class="letterLine">
-                        Me tumse koi bade wade nahi krunga bas itna sa bolunga ki tumhara har sad moment
-                        happy moment hoga. Tum bas hsti rhogi
-                      </p>
-                      <p class="letterLine letterQuestion">Will you be my partner for life</p>
-                    </div>
-                  </div>
-                  <div class="envFront" aria-hidden="true"></div>
-                  <div class="envFlap" aria-hidden="true"></div>
-                  <div class="envSeal" aria-hidden="true"></div>
-                </button>
+        <div class="signature">From <strong id="fromName">Tushar</strong></div>
 
-                <div class="choiceArea" id="choiceArea" aria-hidden="true">
-                  <div class="buttons choiceButtons">
-                    <button id="choiceA" class="btn primary" type="button">
-                      Yes, let's make this week amazing!
-                    </button>
-                    <button id="choiceB" class="btn secondary" type="button">
-                      Only if there's chocolate involved.
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <p class="footerText">
-                Just a small effort to remind you how special you are. Stay happy!
-              </p>
-
-              <div class="signature">From <strong id="fromName">Tushar</strong></div>
-
-              <!-- <p class="note" id="note">
-                Tip: personalize with <code>?to=My%20Favourite%20Person&amp;from=Tushar</code>
-              </p> -->
-            </section>
+        <!-- <p class="note" id="note">
+          Tip: personalize with <code>?to=My%20Favourite%20Person&amp;from=Tushar</code>
+        </p> -->
+      </section>
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1732,24 +1732,25 @@
       <source src="audio2.mpeg" type="audio/mpeg" />
     </audio>
 
-      <script>
-        (() => {
+    <script>
+      (() => {
         const DEFAULT_TO = "My Favourite Person";
         const DEFAULT_FROM = "Tushar";
 
         const card = document.getElementById("card");
         const petals = document.getElementById("petals");
+        const hearts = document.getElementById("hearts");
         const roses = document.getElementById("roses");
-        const noBtn = document.getElementById("noBtn");
-        const yesBtn = document.getElementById("yesBtn");
         const toast = document.getElementById("toast");
         const modal = document.getElementById("modal");
+        const modalMsg = document.getElementById("modalMsg");
         const replayBtn = document.getElementById("replayBtn");
         const bgMusic = document.getElementById("bgMusic");
-        const toName = document.getElementById("toName");
-        const fromName = document.getElementById("fromName");
-        const modalTo = document.getElementById("modalTo");
-        const modalFrom = document.getElementById("modalFrom");
+
+        const envelopeBtn = document.getElementById("envelopeBtn");
+        const choiceArea = document.getElementById("choiceArea");
+        const choiceA = document.getElementById("choiceA");
+        const choiceB = document.getElementById("choiceB");
 
         const params = new URLSearchParams(window.location.search);
         const day = (() => {
@@ -1760,11 +1761,7 @@
 
         document.body.dataset.day = String(day);
 
-        let escaped = false;
-        let initialRect = null;
         let toastTimer = null;
-        let noEscapes = 0;
-        let lastEscapeAt = 0;
 
         function showToast(message, durationMs = 1200) {
           toast.textContent = message;
@@ -1837,6 +1834,35 @@
           }
         }
 
+        function spawnHearts() {
+          if (prefersReducedMotion()) return;
+          if (!hearts) return;
+
+          const count = 14;
+          for (let i = 0; i < count; i++) {
+            const el = document.createElement("div");
+            el.className = "heartFloat";
+
+            const size = 10 + Math.random() * 20;
+            const x = Math.random() * 100;
+            const dur = 16 + Math.random() * 18;
+            const delay = -Math.random() * dur;
+            const drift = (Math.random() * 220 - 110).toFixed(1) + "px";
+            const opacity = 0.06 + Math.random() * 0.18;
+            const rot = (35 + Math.random() * 30).toFixed(1) + "deg";
+
+            el.style.setProperty("--size", size.toFixed(1) + "px");
+            el.style.setProperty("--x", x.toFixed(2) + "vw");
+            el.style.setProperty("--dur", dur.toFixed(2) + "s");
+            el.style.setProperty("--delay", delay.toFixed(2) + "s");
+            el.style.setProperty("--drift", drift);
+            el.style.setProperty("--rot", rot);
+            el.style.opacity = opacity.toFixed(3);
+
+            hearts.appendChild(el);
+          }
+        }
+
         function spawnRoses() {
           if (prefersReducedMotion()) return;
           if (!roses) return;
@@ -1845,7 +1871,7 @@
           for (let i = 0; i < count; i++) {
             const el = document.createElement("div");
             el.className = "roseFloat";
-            el.textContent = "🌹";
+            el.textContent = String.fromCodePoint(0x1f339);
 
             const size = 18 + Math.random() * 26;
             const x = Math.random() * 100;
@@ -1872,12 +1898,13 @@
           // Day 2: ring-only background, no petals/roses.
           roses.innerHTML = "";
           if (petals) petals.innerHTML = "";
+          if (hearts) hearts.innerHTML = "";
 
           const count = 18;
           for (let i = 0; i < count; i++) {
             const el = document.createElement("div");
             el.className = "ringFloat";
-            el.textContent = "💍";
+            el.textContent = String.fromCodePoint(0x1f48d);
 
             const size = 18 + Math.random() * 26;
             const x = Math.random() * 100;
@@ -1897,14 +1924,13 @@
           }
         }
 
-        function burstRosesAt(x, y) {
+        function burstRosesAt(x, y, count = 12) {
           if (prefersReducedMotion()) return;
 
-          const count = 12;
           for (let i = 0; i < count; i++) {
             const el = document.createElement("div");
             el.className = "roseBurst";
-            el.textContent = "🌹";
+            el.textContent = String.fromCodePoint(0x1f339);
 
             el.style.left = `${x}px`;
             el.style.top = `${y}px`;
@@ -1929,7 +1955,7 @@
           for (let i = 0; i < count; i++) {
             const el = document.createElement("div");
             el.className = "roseBurst ringBurst";
-            el.textContent = "💍";
+            el.textContent = String.fromCodePoint(0x1f48d);
 
             el.style.left = `${x}px`;
             el.style.top = `${y}px`;
@@ -1947,59 +1973,12 @@
           }
         }
 
-        function escapeNoButton() {
-          const now = Date.now();
-          if (now - lastEscapeAt < 140) return;
-          lastEscapeAt = now;
-
-          if (!escaped) {
-            initialRect = noBtn.getBoundingClientRect();
-
-            // Move the button to <body> so `position: fixed` is relative to the viewport
-            // (avoids disappearing due to transformed/filtered ancestors).
-            document.body.appendChild(noBtn);
-            noBtn.style.position = "fixed";
-            noBtn.style.left = initialRect.left + "px";
-            noBtn.style.top = initialRect.top + "px";
-            noBtn.style.zIndex = "50";
-            escaped = true;
-          }
-
-          const padding = 16;
-          const yesRect = yesBtn.getBoundingClientRect();
-          const noRect = noBtn.getBoundingClientRect();
-
-          const minX = padding;
-          const maxX = Math.max(minX, window.innerWidth - noRect.width - padding);
-          const minY = padding;
-          const maxY = Math.max(minY, window.innerHeight - noRect.height - padding);
-
-          let x, y, safe;
-          let attempts = 0;
-
-          do {
-            x = minX + Math.random() * (maxX - minX);
-            y = minY + Math.random() * (maxY - minY);
-
-            safe =
-              x + noRect.width < yesRect.left ||
-              x > yesRect.right ||
-              y + noRect.height < yesRect.top ||
-              y > yesRect.bottom;
-
-            attempts++;
-          } while (!safe && attempts < 60);
-
-          noBtn.style.left = `${x}px`;
-          noBtn.style.top = `${y}px`;
-        }
-
         function petalShower() {
           if (typeof confetti !== "function") return;
 
           if (prefersReducedMotion()) return;
 
-          const colors = ["#b4003a", "#ff2f7a", "#ff6aa7", "#ffd6e7", "#ffb347"];
+          const colors = ["#8b1b4e", "#ff4d9d", "#b197ff", "#ffd1e8", "#e8dcff"];
           const end = Date.now() + 2200;
 
           (function frame() {
@@ -2045,6 +2024,7 @@
         }
 
         function openModal() {
+          if (!modal) return;
           modal.classList.add("open");
           modal.setAttribute("aria-hidden", "false");
           const focusTarget = replayBtn;
@@ -2052,15 +2032,17 @@
         }
 
         function closeModal() {
+          if (!modal) return;
           modal.classList.remove("open");
           modal.setAttribute("aria-hidden", "true");
-          yesBtn.focus({ preventScroll: true });
+          const focusTarget = choiceA || envelopeBtn;
+          if (focusTarget) focusTarget.focus({ preventScroll: true });
         }
 
         function initDay2() {
           if (!card) return;
 
-          const RING = "💍";
+          const RING = String.fromCodePoint(0x1f48d);
 
           card.setAttribute("aria-label", "Propose Day card");
           card.innerHTML = `
@@ -2440,82 +2422,93 @@
           return;
         }
 
-        function maybeEscapeFromPoint(clientX, clientY, threshold) {
-          const rect = noBtn.getBoundingClientRect();
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const distance = Math.hypot(clientX - cx, clientY - cy);
-          if (distance < threshold) escapeNoButton();
+        function setModalMessage(message) {
+          if (!modalMsg) return;
+          modalMsg.textContent = message || "";
         }
 
-        noBtn.addEventListener("touchstart", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          escapeNoButton();
-        });
+        function setEnvelopeOpen(open) {
+          if (!envelopeBtn) return;
+          const next = Boolean(open);
 
-        noBtn.addEventListener("pointerdown", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          escapeNoButton();
+          envelopeBtn.classList.toggle("open", next);
+          envelopeBtn.setAttribute("aria-expanded", next ? "true" : "false");
 
-          noEscapes++;
-          const lines = [
-            "Nice try.",
-            "The roses say: yes only.",
-            "No button is hiding in the rose garden.",
-            "Too slow. The petals moved it.",
-            "Okay okay... still no. (Just kidding.)",
-          ];
-          showToast(lines[noEscapes % lines.length]);
-        });
+          const letter = document.getElementById("letter");
+          if (letter) letter.setAttribute("aria-hidden", next ? "false" : "true");
 
-        noBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          escapeNoButton();
-        });
+          if (choiceArea) {
+            choiceArea.classList.toggle("open", next);
+            choiceArea.setAttribute("aria-hidden", next ? "false" : "true");
+          }
+        }
 
-        noBtn.addEventListener("focus", () => {
-          escapeNoButton();
-          showToast("Almost. Try the other one.");
-        });
+        function roseStorm() {
+          if (prefersReducedMotion()) return;
 
-        // Flee when pointer is near (mouse + touch)
-        document.addEventListener("pointermove", (e) => {
-          const t = e.pointerType === "touch" ? 160 : 120;
-          maybeEscapeFromPoint(e.clientX, e.clientY, t);
-        });
+          const total = 14;
+          for (let i = 0; i < total; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = window.innerHeight * (0.32 + Math.random() * 0.48);
+            window.setTimeout(() => burstRosesAt(x, y, 8), i * 60);
+          }
+        }
 
-        document.addEventListener("pointerdown", (e) => {
-          if (e.pointerType !== "touch") return;
-          maybeEscapeFromPoint(e.clientX, e.clientY, 190);
-        });
+        function burstFromElement(el) {
+          if (!el) return;
+          const r = el.getBoundingClientRect();
+          burstRosesAt(r.left + r.width / 2, r.top + r.height / 2, 10);
+        }
 
-        window.addEventListener("resize", () => {
-          if (escaped) escapeNoButton();
-        });
+        setEnvelopeOpen(false);
+        setModalMessage("");
 
-        // Yes behavior
-        yesBtn.addEventListener("click", () => {
-          const r = yesBtn.getBoundingClientRect();
-          burstRosesAt(r.left + r.width / 2, r.top + r.height / 2);
-          petalShower();
-          openModal();
-        });
+        if (envelopeBtn) {
+          envelopeBtn.addEventListener("click", () => {
+            const open = !envelopeBtn.classList.contains("open");
+            setEnvelopeOpen(open);
+            if (open) showToast("Pick one below.", 1400);
+          });
+        }
 
-        replayBtn.addEventListener("click", petalShower);
+        const CHOCOLATE = String.fromCodePoint(0x1f36b);
 
-        modal.addEventListener("click", (e) => {
+        if (choiceA) {
+          choiceA.addEventListener("click", () => {
+            burstFromElement(choiceA);
+            roseStorm();
+            petalShower();
+            showToast("Yay!", 1400);
+            setModalMessage("Yay! Virtual roses for you.");
+            openModal();
+          });
+        }
+
+        if (choiceB) {
+          choiceB.addEventListener("click", () => {
+            burstFromElement(choiceB);
+            petalShower();
+            const msg = `Deal! Chocolate is on the way! ${CHOCOLATE}`;
+            showToast(msg, 2400);
+            setModalMessage(msg);
+            openModal();
+          });
+        }
+
+        if (replayBtn) replayBtn.addEventListener("click", petalShower);
+
+        if (modal) modal.addEventListener("click", (e) => {
           if (e.target === modal) closeModal();
         });
 
         document.addEventListener("keydown", (e) => {
+          if (!modal) return;
           if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
         });
 
         applyPersonalization();
         spawnPetals();
+        spawnHearts();
         spawnRoses();
       })();
     </script>
