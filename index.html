@@ -18,9 +18,9 @@
 
     <style>
       :root {
-        --bg-1: #ff9fbd;
-        --bg-2: #ffd6e7;
-        --bg-3: #fff3f8;
+        --bg-1: #ffd1e8;
+        --bg-2: #e8dcff;
+        --bg-3: #fff6fb;
 
         --ink: #2a0c1a;
         --muted: rgba(42, 12, 26, 0.66);
@@ -28,9 +28,9 @@
         --card: rgba(255, 255, 255, 0.86);
         --shadow: 0 44px 130px rgba(42, 12, 26, 0.22);
 
-        --accent-1: #b4003a;
-        --accent-2: #ff2f7a;
-        --accent-3: #ffb347;
+        --accent-1: #8b1b4e;
+        --accent-2: #ff4d9d;
+        --accent-3: #b197ff;
         --leaf-1: #2f7d4a;
         --leaf-2: #53b86a;
 
@@ -58,7 +58,7 @@
           ),
           radial-gradient(
             1000px 780px at 90% 18%,
-            rgba(180, 0, 58, 0.2),
+            rgba(177, 151, 255, 0.25),
             transparent 62%
           ),
           radial-gradient(
@@ -102,10 +102,68 @@
         pointer-events: none;
       }
 
+      .hearts {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+
       .roses {
         position: fixed;
         inset: 0;
         pointer-events: none;
+      }
+
+      .heartFloat {
+        --x: 50vw;
+        --size: 16px;
+        --dur: 18s;
+        --delay: 0s;
+        --drift: 0px;
+        --rot: 45deg;
+
+        position: absolute;
+        left: var(--x);
+        bottom: -18vh;
+        width: var(--size);
+        height: var(--size);
+        opacity: 0.14;
+        filter: drop-shadow(0 16px 26px rgba(139, 27, 78, 0.14));
+        transform: translate3d(0, 0, 0) rotate(var(--rot));
+        animation: heartUp var(--dur) linear infinite;
+        animation-delay: var(--delay);
+        will-change: transform, opacity;
+        background: radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.58),
+            transparent 46%
+          ),
+          linear-gradient(
+            145deg,
+            rgba(255, 77, 157, 0.36),
+            rgba(177, 151, 255, 0.22)
+          );
+        border-radius: 4px;
+      }
+
+      .heartFloat::before,
+      .heartFloat::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border-radius: 999px;
+      }
+
+      .heartFloat::before {
+        top: -50%;
+        left: 0;
+      }
+
+      .heartFloat::after {
+        left: -50%;
+        top: 0;
       }
 
       .roseFloat {
@@ -170,6 +228,20 @@
         }
         100% {
           transform: translate3d(var(--drift), -130vh, 0) rotate(16deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes heartUp {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(45deg);
+          opacity: 0;
+        }
+        12% {
+          opacity: 0.2;
+        }
+        100% {
+          transform: translate3d(var(--drift), -130vh, 0) rotate(70deg);
           opacity: 0;
         }
       }
@@ -492,6 +564,211 @@
         font-size: 15px;
         line-height: 1.6;
         text-align: center;
+      }
+
+      .heroTitle {
+        margin-top: 6px;
+      }
+
+      .heroSub {
+        margin-top: 10px;
+      }
+
+      .envelopeStage {
+        position: relative;
+        margin: 10px auto 12px;
+        width: min(420px, 100%);
+        display: grid;
+        place-items: center;
+        gap: 14px;
+      }
+
+      .envelope {
+        position: relative;
+        width: min(380px, 92vw);
+        aspect-ratio: 16 / 10.5;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        border-radius: 22px;
+        background: transparent;
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        transform: translateZ(0);
+        filter: drop-shadow(0 26px 80px rgba(35, 18, 23, 0.16));
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      .envelope:focus-visible {
+        outline: 3px solid rgba(177, 151, 255, 0.28);
+        outline-offset: 4px;
+      }
+
+      .envBack {
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        background: linear-gradient(
+            165deg,
+            rgba(255, 255, 255, 0.78),
+            rgba(255, 255, 255, 0.52)
+          ),
+          linear-gradient(
+            135deg,
+            rgba(255, 77, 157, 0.14),
+            rgba(177, 151, 255, 0.12)
+          );
+        border: 1px solid rgba(42, 12, 26, 0.08);
+        overflow: hidden;
+      }
+
+      .envBack::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: radial-gradient(
+          300px 140px at 30% 18%,
+          rgba(255, 255, 255, 0.75),
+          transparent 62%
+        );
+        pointer-events: none;
+      }
+
+      .envFront {
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 209, 232, 0.86),
+          rgba(231, 220, 255, 0.82)
+        );
+        clip-path: polygon(0 42%, 50% 74%, 100% 42%, 100% 100%, 0 100%);
+        border: 1px solid rgba(42, 12, 26, 0.08);
+      }
+
+      .envFlap {
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.86),
+          rgba(255, 209, 232, 0.9)
+        );
+        clip-path: polygon(0 0, 100% 0, 50% 70%);
+        border: 1px solid rgba(42, 12, 26, 0.08);
+        transform-origin: 50% 0%;
+        transform: rotateX(0deg);
+        transition: transform 700ms cubic-bezier(0.2, 0.9, 0.2, 1);
+        backface-visibility: hidden;
+      }
+
+      .envSeal {
+        position: absolute;
+        left: 50%;
+        top: 52%;
+        width: 60px;
+        height: 60px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        border-radius: 18px;
+        background: radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.55),
+            transparent 55%
+          ),
+          linear-gradient(135deg, rgba(139, 27, 78, 0.7), rgba(255, 77, 157, 0.55));
+        box-shadow: 0 16px 50px rgba(139, 27, 78, 0.18);
+        opacity: 0.8;
+        transition: transform 700ms cubic-bezier(0.2, 0.9, 0.2, 1),
+          opacity 200ms ease;
+      }
+
+      .letter {
+        position: absolute;
+        left: 6%;
+        right: 6%;
+        bottom: 8%;
+        height: 78%;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(42, 12, 26, 0.08);
+        box-shadow: 0 30px 90px rgba(35, 18, 23, 0.14);
+        transform: translateY(54%);
+        transition: transform 700ms cubic-bezier(0.2, 0.9, 0.2, 1);
+        overflow: hidden;
+      }
+
+      .letterInner {
+        height: 100%;
+        overflow: auto;
+        padding: 16px 16px 14px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .letterLine {
+        margin: 0 0 10px;
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(42, 12, 26, 0.78);
+        text-align: left;
+      }
+
+      .letterQuestion {
+        margin-top: 12px;
+        font-family: "Fraunces", ui-serif, Georgia, serif;
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: -0.01em;
+        color: rgba(42, 12, 26, 0.92);
+      }
+
+      .envelope.open .envFlap {
+        transform: rotateX(180deg);
+      }
+
+      .envelope.open .envSeal {
+        transform: translate(-50%, -50%) rotate(45deg) scale(0.92);
+        opacity: 0.45;
+      }
+
+      .envelope.open .letter {
+        transform: translateY(-18%);
+      }
+
+      .choiceArea {
+        width: min(420px, 100%);
+        opacity: 0;
+        transform: translateY(-6px);
+        pointer-events: none;
+        transition: opacity 250ms ease, transform 250ms ease;
+      }
+
+      .choiceArea.open {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+
+      .choiceButtons {
+        gap: 12px;
+      }
+
+      .choiceButtons .btn {
+        padding: 13px 16px;
+        font-size: 14px;
+      }
+
+      .footerText {
+        position: relative;
+        margin: 10px auto 0;
+        max-width: 56ch;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.55;
+        color: rgba(42, 12, 26, 0.64);
       }
 
       .chips {
@@ -1306,6 +1583,7 @@
 
       @media (prefers-reduced-motion: reduce) {
         .petal,
+        .heartFloat,
         .roseFloat,
         .ringFloat,
         .roseBurst,
@@ -1325,6 +1603,12 @@
         .btn {
           transition: none !important;
         }
+
+        .envFlap,
+        .letter,
+        .choiceArea {
+          transition: none !important;
+        }
       }
     </style>
   </head>
@@ -1332,46 +1616,73 @@
   <body>
     <div class="bg-glow" aria-hidden="true"></div>
     <div class="petals" id="petals" aria-hidden="true"></div>
+    <div class="hearts" id="hearts" aria-hidden="true"></div>
     <div class="roses" id="roses" aria-hidden="true"></div>
 
     <main class="stage">
-      <section class="card" id="card" aria-label="Rose Day card">
-        <div class="ribbon"><i aria-hidden="true"></i> Day 1 - Rose Day</div>
+            <section class="card" id="card" aria-label="Rose Day card">
+              <div class="ribbon"><i aria-hidden="true"></i> Day 1 - Rose Day</div>
 
-        <div class="roseMark" aria-hidden="true">
-          <div class="ring"></div>
-          <div class="roseEmoji" aria-hidden="true">🌹</div>
-        </div>
+              <div class="roseMark" aria-hidden="true">
+                <div class="ring"></div>
+                <div class="roseEmoji" aria-hidden="true">&#127801;</div>
+              </div>
 
-        <div class="forLine">For <span class="script" id="toName">Sana</span></div>
+              <div class="forLine">
+                For <span class="script" id="toName">My Favourite Person</span>
+              </div>
 
-        <p class="quoteText">
-          I didn’t fall in love suddenly,<br />
-          I walked into it, every day, choosing you
-        </p>
+              <h1 class="heroTitle">Because you deserve to smile a little brighter today...</h1>
+              <p class="sub heroSub">Happy Rose Day!</p>
 
-        <h1 class="question">Will you accept my rose ?</h1>
+              <div class="envelopeStage">
+                <button
+                  class="envelope"
+                  id="envelopeBtn"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="letter"
+                  aria-label="Open the envelope"
+                >
+                  <div class="envBack" aria-hidden="true"></div>
+                  <div class="letter" id="letter" aria-hidden="true">
+                    <div class="letterInner">
+                      <p class="letterLine">Me koi badi speech dene nahi aya hu</p>
+                      <p class="letterLine">Ham abhi abhi mile he par tum mere liye sukoon ko</p>
+                      <p class="letterLine">
+                        Me tumse koi bade wade nahi krunga bas itna sa bolunga ki tumhara har sad moment
+                        happy moment hoga. Tum bas hsti rhogi
+                      </p>
+                      <p class="letterLine letterQuestion">Will you be my partner for life</p>
+                    </div>
+                  </div>
+                  <div class="envFront" aria-hidden="true"></div>
+                  <div class="envFlap" aria-hidden="true"></div>
+                  <div class="envSeal" aria-hidden="true"></div>
+                </button>
 
-        <div class="buttons" id="buttons">
-          <button
-            id="yesBtn"
-            class="btn primary roseBtn"
-            type="button"
-            aria-label="Accept my rose"
-          >
-            🌹
-          </button>
-          <button id="noBtn" class="btn ghost" type="button">
-            No
-          </button>
-        </div>
+                <div class="choiceArea" id="choiceArea" aria-hidden="true">
+                  <div class="buttons choiceButtons">
+                    <button id="choiceA" class="btn primary" type="button">
+                      Yes, let's make this week amazing!
+                    </button>
+                    <button id="choiceB" class="btn secondary" type="button">
+                      Only if there's chocolate involved.
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-        <div class="signature">From <strong id="fromName">Adil Khan</strong></div>
+              <p class="footerText">
+                Just a small effort to remind you how special you are. Stay happy!
+              </p>
 
-        <!-- <p class="note" id="note">
-          Tip: personalize with <code>?to=Sana&amp;from=Adil%20Khan</code>
-        </p> -->
-      </section>
+              <div class="signature">From <strong id="fromName">Tushar</strong></div>
+
+              <!-- <p class="note" id="note">
+                Tip: personalize with <code>?to=My%20Favourite%20Person&amp;from=Tushar</code>
+              </p> -->
+            </section>
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1399,19 +1710,21 @@
         </div>
 
         <div class="dedication">
-          For <span class="script" id="modalTo">Sana</span>
+          For <span class="script" id="modalTo">My Favourite Person</span>
           <span class="sep">|</span>
-          From <span id="modalFrom">Adil Khan</span>
+          From <span id="modalFrom">Tushar</span>
         </div>
 
         <div class="photoFrame">
-          <img src="adil-sana.jpeg" alt="Adil and Sana" class="photo" />
+          <img src="tushargf2.jpeg" alt="A special memory" class="photo" />
         </div>
 
         <div class="finalQuote">
-          Every rose fades one day,<br />
-          <span class="accentLine">But what I feel for you only grows.</span>
+          Just a small effort to remind you<br />
+          <span class="accentLine">how special you are.</span>
         </div>
+
+        <p id="modalMsg"></p>
       </div>
     </div>
 
@@ -1419,10 +1732,10 @@
       <source src="audio2.mpeg" type="audio/mpeg" />
     </audio>
 
-    <script>
-      (() => {
-        const DEFAULT_TO = "Sana";
-        const DEFAULT_FROM = "Adil Khan";
+      <script>
+        (() => {
+        const DEFAULT_TO = "My Favourite Person";
+        const DEFAULT_FROM = "Tushar";
 
         const card = document.getElementById("card");
         const petals = document.getElementById("petals");
