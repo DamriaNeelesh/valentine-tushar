@@ -1133,6 +1133,7 @@
         pointer-events: none;
         transition: opacity 200ms ease;
         z-index: 100;
+        overflow: hidden;
       }
 
       .modal.open {
@@ -1140,17 +1141,21 @@
         pointer-events: auto;
       }
 
+      body.modalOpen {
+        overflow: hidden;
+      }
+
       .sheet {
         width: min(560px, 100%);
-        max-height: min(720px, calc(100vh - 56px));
+        max-height: calc(100vh - 56px);
+        max-height: calc(100dvh - 56px);
         border-radius: 28px;
         background: rgba(255, 255, 255, 0.92);
         border: 1px solid rgba(255, 255, 255, 0.55);
         box-shadow: 0 40px 150px rgba(0, 0, 0, 0.35);
-        padding: 26px 24px 22px;
+        padding: 24px 22px 20px;
         position: relative;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow: hidden;
       }
 
       .sheet::before {
@@ -1224,7 +1229,7 @@
 
       .dedication {
         position: relative;
-        margin: 6px auto 16px;
+        margin: 4px auto 12px;
         text-align: center;
         font-size: 14px;
         color: rgba(42, 12, 26, 0.72);
@@ -1248,8 +1253,10 @@
       }
 
       .sheet .photoFrame {
-        width: min(220px, 72vw);
-        margin-bottom: 12px;
+        width: auto;
+        height: clamp(140px, 24vh, 280px);
+        max-width: min(220px, 72vw);
+        margin-bottom: 10px;
       }
 
       .photoFrame::before {
@@ -1350,18 +1357,23 @@
       }
 
       .sheet .letterLine {
-        margin: 0 auto 10px;
-        max-width: 50ch;
+        margin: 0 auto 8px;
+        max-width: 52ch;
+        font-size: clamp(12px, 3vw, 15px);
+        line-height: 1.5;
         color: rgba(35, 18, 23, 0.76);
       }
 
       .sheet .letterQuestion {
-        margin: 10px auto 0;
+        margin: 8px auto 0;
+        font-size: clamp(15px, 3.8vw, 18px);
         color: rgba(35, 18, 23, 0.92);
       }
 
       .sheet .modalFooter {
-        margin-top: 14px;
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 1.45;
         color: rgba(35, 18, 23, 0.62);
       }
 
@@ -1371,7 +1383,7 @@
       }
 
       .sheet .modalChoices {
-        margin-top: 14px;
+        margin-top: 10px;
       }
 
       .sheet .actions {
@@ -1871,9 +1883,6 @@
             <button id="replayBtn" class="btn secondary mini" type="button">
               Petal shower
             </button>
-            <button id="closeBtn" class="btn ghost mini" type="button">
-              Close
-            </button>
           </div>
         </div>
 
@@ -1932,7 +1941,6 @@
         const modal = document.getElementById("modal");
         const modalMsg = document.getElementById("modalMsg");
         const replayBtn = document.getElementById("replayBtn");
-        const closeBtn = document.getElementById("closeBtn");
         const bgMusic = document.getElementById("bgMusic");
 
         const envelopeBtn = document.getElementById("envelopeBtn");
@@ -2212,6 +2220,7 @@
 
         function openModal() {
           if (!modal) return;
+          document.body.classList.add("modalOpen");
           modal.classList.add("open");
           modal.setAttribute("aria-hidden", "false");
           const focusTarget = choiceA || replayBtn;
@@ -2222,6 +2231,7 @@
           if (!modal) return;
           modal.classList.remove("open");
           modal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("modalOpen");
           if (envelopeBtn) {
             envelopeBtn.classList.remove("open");
             envelopeBtn.focus({ preventScroll: true });
@@ -2677,8 +2687,6 @@
         }
 
         if (replayBtn) replayBtn.addEventListener("click", petalShower);
-        if (closeBtn) closeBtn.addEventListener("click", closeModal);
-
         if (modal) modal.addEventListener("click", (e) => {
           if (e.target === modal) closeModal();
         });
